@@ -147,12 +147,9 @@ if uploaded_file is not None:
     progress_bar = st.progress(100)
     st.success('Image Uploaded!')
 
-else:
-    st.toast('Upload an image first!')
-
 button1 = st.button("Get ASCII'd")
 
-if button1:
+if button1 and uploaded_file is not None:
     image = resize_if_necessary(image)
     img = downscale_image(image, 8)
     
@@ -167,4 +164,7 @@ if button1:
     img2.save(ascii_image_bytes, format='PNG')
     ascii_image_bytes.seek(0)
     st.download_button(label='Download ASCII Image', data=ascii_image_bytes, file_name='ASCIICORE_Image.png', mime='image/png')
+
+else:
+    st.toast('Upload an Image First')
         
