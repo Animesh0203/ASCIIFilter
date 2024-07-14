@@ -16,6 +16,21 @@ html, body, [class*="css"] {
 }
 """
 
+html = """
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G1YWG59NW3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G1YWG59NW3');
+</script>
+"""
+
+# Embed GA HTML
+st.markdown(html, unsafe_allow_html=True)
+
 # Display the CSS using st.markdown
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
@@ -131,6 +146,9 @@ if uploaded_file is not None:
     st.image(image, caption="Uploaded Image", use_column_width=True)
     progress_bar = st.progress(100)
     st.success('Image Uploaded!')
+
+else:
+    st.toast('Upload an image first!')
 
 button1 = st.button("Get ASCII'd")
 
